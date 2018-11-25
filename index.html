@@ -12,6 +12,7 @@
     <div class="bridge">
       <button class="circle">Add Circle</button>
       <button class="reset">Reset</button>
+      <button class="toggle">Toggle</button>
 
     </div>
     <div class="body"></div>
@@ -20,21 +21,9 @@
       <div id="search_grid">Loading grid...</div>
     </div>
 
-    <script src="./matter.js"></script>
-    <script src="./app.js"></script>
+    <script type='text/javascript' src="./matter.js"></script>
+    <script type='text/javascript' src="./app.js"></script>
     <script type='text/javascript' src='./astar.js'></script>
-    <script type='text/javascript' src='demo.js'></script>
-
-    <script type='text/javascript'>
-        var graph = new Graph([
-            [1,1,1,1],
-            [0,1,1,0],
-            [0,0,1,1]
-        ]);
-        var start = graph.grid[0][0];
-        var end = graph.grid[1][2];
-        var result = astar.search(graph, start, end);
-        // result is an array containing the shortest path
-    </script>
+    <script type='text/javascript' src='./demo.js'></script>
   </body>
 </html>
