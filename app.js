@@ -9,19 +9,31 @@ let engine = Engine.create();
 let circleButton = document.querySelector(".circle");
 let resetButton = document.querySelector(".reset");
 
+// define SeatObject for information storing
+function SeatObject(xPosition, yPosition, bearing) {
+  this.xPosition = xPosition;
+  this.yPosition = yPosition;
+  this.bearing = bearing;
+}
+
 // render world
 let render = Render.create({
   element: document.querySelector(".body"),
   engine: engine,
   options: {
     wireframes: true,
-    showAngleIndicator: true
+    showAngleIndicator: true,
+    height: 650,
+    width: 650
   }
 });
 
 // custom functions
-
-let addCircle = () => Bodies.circle(Math.random() * 500 + 30, 30, 30);
+let addCircle = () => {
+    let seat = new SeatObject(30, 30, 0);
+    console.log('x: ' + seat.xPosition);
+    return Bodies.circle(Math.random() * 500 + 30, 30, 30);
+}
 
 let keyEvent = (body, key) => {
   switch (key) {
@@ -56,19 +68,19 @@ let keyEvent = (body, key) => {
 
 // custom elements in the world
 
-let boxA = Bodies.rectangle(400, 200, 80, 80);
+let boxA = Bodies.rectangle(400, 400, 80, 80);
 
 World.add(engine.world, [boxA]);
 
 // add boundaries
 
-var offset = 5;
-World.add(engine.world, [
-  Bodies.rectangle(400, -offset, 800 + 2 * offset, 30, { isStatic: true }),
-  Bodies.rectangle(400, 600 + offset, 800 + 2 * offset, 30, { isStatic: true }),
-  Bodies.rectangle(800 + offset, 300, 30, 600 + 2 * offset, { isStatic: true }),
-  Bodies.rectangle(-offset, 300, 30, 600 + 2 * offset, { isStatic: true })
-]);
+// var offset = 5;
+// World.add(engine.world, [
+//   Bodies.rectangle(400, -offset, 800 + 2 * offset, 30, { isStatic: true }),
+//   Bodies.rectangle(400, 600 + offset, 800 + 2 * offset, 30, { isStatic: true }),
+//   Bodies.rectangle(800 + offset, 300, 30, 600 + 2 * offset, { isStatic: true }),
+//   Bodies.rectangle(-offset, 300, 30, 600 + 2 * offset, { isStatic: true })
+// ]);
 
 // turn off gravity
 
