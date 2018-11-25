@@ -28,6 +28,11 @@ let render = Render.create({
   }
 });
 
+let input = {
+    x: 22,
+    y: 44
+};
+
 // custom functions
 let addCircle = () => {
     let seat = new SeatObject(30, 30, 0);
@@ -35,22 +40,42 @@ let addCircle = () => {
     return Bodies.circle(Math.random() * 500 + 30, 30, 30);
 }
 
+let getPosition = (body) => {
+    return body.position;
+};
+
+let getDifference = (original, input) => {
+    let difference = Math.abs(original - input);
+    if(original > input) {
+        return -difference;
+    } else {
+        return difference;
+    }
+}
+
+let updatePosition = (body, input) => {
+    return {
+        x: getDifference(body.x, input.x),
+        y: getDifference(body.y, input.y)
+    }
+};
+
 let keyEvent = (body, key) => {
   switch (key) {
     case 37:
-      Matter.Body.translate(body, { x: -10, y: 0 });
+      Matter.Body.translate(body, { x: -65, y: 0 });
       break;
 
     case 38:
-      Matter.Body.translate(body, { x: 0, y: -10 });
+      Matter.Body.translate(body, { x: 0, y: -65 });
       break;
 
     case 39:
-      Matter.Body.translate(body, { x: 10, y: 0 });
+      Matter.Body.translate(body, { x: 65, y: 0 });
       break;
 
     case 40:
-      Matter.Body.translate(body, { x: 0, y: 10 });
+      Matter.Body.translate(body, { x: 0, y: 65 });
       break;
 
     case 81:
@@ -68,7 +93,7 @@ let keyEvent = (body, key) => {
 
 // custom elements in the world
 
-let boxA = Bodies.rectangle(400, 400, 80, 80);
+let boxA = Bodies.rectangle((65/2), (65/2), 65, 65);
 
 World.add(engine.world, [boxA]);
 
@@ -106,6 +131,8 @@ document.addEventListener("keydown", e => {
 document.addEventListener("keyup", e => {
   keyEvent(boxA, e.keyCode);
 });
+
+Matter.Body.translate(boxA, updatePosition(getPosition(boxA), input));
 
 Engine.run(engine);
 Render.run(render);
