@@ -1,6 +1,9 @@
 # matter-js
 
-Key Events:
+Simulation environment for A* algorithm.
 
-- Q, W - Rotate the square
-- Arrow Keys - Translate the square
+#### TODO:
+
+- Add grid
+- Merge algorithm with matter.js
+- multiple agents
