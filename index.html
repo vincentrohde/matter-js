@@ -4,15 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>Smart Seating</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen, projection"
+      href="./public/css/demo.css"
+    />
+    <!--
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    -->
   </head>
   <body>
-    <div class="bridge">
-      <button class="circle">Add Circle</button>
-      <button class="reset">Reset</button>
-    </div>
     <div class="body"></div>
-    <script src="./matter.js"></script>
-    <script src="./app.js"></script>
+
+    <!-- <div id="main"><div id="search_grid">Loading grid...</div></div> -->
+
+    <script type="text/javascript" src="./sources/matter.js"></script>
+    <script type="text/javascript" src="./sources/astar.js"></script>
+    <script type="text/javascript" src="./public/js/app.js"></script>
+    <script type="text/javascript" src="./public/api/api.js"></script>
+    <!-- <script type="text/javascript" src="./public/js/demo.js"></script> -->
+
+    <script type="text/javascript">
+      var graph = new Graph([[1, 1, 1, 1], [0, 1, 1, 0], [0, 0, 1, 1]]);
+      var start = graph.grid[0][0];
+      var end = graph.grid[1][2];
+      var result = astar.search(graph, start, end);
+      // result is an array containing the shortest path
+    </script>
   </body>
 </html>
